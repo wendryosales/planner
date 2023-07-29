@@ -5,7 +5,7 @@ import { ProjectCreatedPresenter } from '../presenters/project-created.presenter
 
 @Controller('project')
 export class ProjectController {
-  constructor(private readonly createProject: CreateProjectUseCase) { }
+  constructor(private readonly createProject: CreateProjectUseCase) {}
 
   @Post()
   async create(

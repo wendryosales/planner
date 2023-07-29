@@ -1,5 +1,5 @@
 import { Project } from '@/domain/enterprise/entities/project';
 
-export interface ProjectRepository {
+export interface IProjectRepository {
   create(project: Project): Promise<void>;
 }

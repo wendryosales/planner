@@ -1,9 +1,10 @@
 import { Project } from 'src/domain/enterprise/entities/project';
-import { ProjectRepository } from '../repositories/project-repository';
+import { Inject } from '@nestjs/common';
+import { IProjectRepository } from '../repositories/project.repository';
 
 export interface CreateProjectRequest {
   title: string;
-  description: string;
+  description?: string;
 }
 
 interface CreateProjectResponse {
@@ -11,7 +12,10 @@ interface CreateProjectResponse {
 }
 
 export class CreateProjectUseCase {
-  constructor(private readonly repository: ProjectRepository) { }
+  constructor(
+    @Inject('IProjectRepository')
+    private readonly repository: IProjectRepository,
+  ) {}
 
   async execute(payload: CreateProjectRequest): Promise<CreateProjectResponse> {
     const project = Project.create(payload);
