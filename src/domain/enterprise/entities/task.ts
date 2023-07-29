@@ -4,11 +4,11 @@ import { Priority } from 'src/common/types/priority';
 import { Label } from './label';
 
 interface TaskProps {
-  name: string;
-  description: string;
+  title: string;
+  description?: string;
   assignId: UniqueEntityId;
-  difficulty: number | string;
-  registrationDate: Date;
+  difficulty: string;
+  createdAt: Date;
   priority: Priority;
   epicId: UniqueEntityId;
   labels: Label[];

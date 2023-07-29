@@ -9,3 +9,37 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Projects {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  createdAt   DateTime @default(now())
+
+  epics Epics[]
+}
+
+model Epics {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  createdAt   DateTime @default(now())
+  project     Projects @relation(fields: [projectId], references: [id])
+  projectId   String
+  term        DateTime
+  Tasks       Tasks[]
+}
+
+model Tasks {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  assignId    String?
+  difficulty  String
+  priority    String    @db.VarChar(5)
+  term        DateTime
+
+  createdAt DateTime @default(now())
+  epic      Epics    @relation(fields: [epicId], references: [id])
+  epicId    String
+}

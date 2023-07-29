@@ -4,7 +4,7 @@ import { UniqueEntityId } from 'src/common/entities/unique-entity-id';
 interface ProjectProps {
   title: string;
   description: string;
-  registrationDate: Date;
+  createdAt: Date;
 }
 
 export class Project extends BaseEntity<ProjectProps> {
@@ -12,6 +12,6 @@ export class Project extends BaseEntity<ProjectProps> {
     props: Omit<ProjectProps, 'registrationDate'>,
     id?: UniqueEntityId,
   ) {
-    return new Project({ ...props, registrationDate: new Date() }, id);
+    return new Project({ ...props, createdAt: new Date() }, id);
   }
 }
